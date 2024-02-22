@@ -5,14 +5,6 @@ addEventListener('fetch', event => {
 // Utility functions
 const selectRandomItem = (items) => items[Math.floor(Math.random() * items.length)];
 
-const generateRandomString = (length, characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789') => {
-    let result = '';
-    for (let i = 0; i < length; i++) {
-        result += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return result;
-};
-
 const randomizeCase = (str) => str.split('').map(char => Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase()).join('');
 
 // Main handler function
@@ -21,11 +13,13 @@ async function handleRequest(request) {
     const portsList = [443, 8443, 2053, 2096, 2087, 2083];
     const domain = ''; // Replace with your domain.
     const userUUID = ''; // Replace with your User UUID.
+    const address = 'www.zula.ir';
 
     // Randomized constants
     const randomPort = selectRandomItem(portsList);
     const randomizedDomain = randomizeCase(domain);
-    const randomPath = '/' + generateRandomString(59);
+    const randomizeAddress = randomizeCase(address);
+    const randomPath = '/';
 
     // Configuration object
     const config = {
@@ -81,7 +75,7 @@ async function handleRequest(request) {
                 "settings": {
                     "vnext": [
                         {
-                            "address": randomizedDomain,
+                            "address": randomizeAddress,
                             "port": randomPort,
                             "users": [
                                 {
