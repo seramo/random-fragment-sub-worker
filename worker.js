@@ -1,13 +1,16 @@
+/**
+ * Cloudflare Worker to Generate Random Fragment Subscription
+ * Author: SeRaMo ( https://github.com/seramo/ )
+ */
+
 addEventListener('fetch', event => {
     event.respondWith(handleRequest(event.request))
 })
 
 // Utility functions
 const selectRandomItem = (items) => items[Math.floor(Math.random() * items.length)];
-
 const randomizeCase = (str) => str.split('').map(char => Math.random() > 0.5 ? char.toUpperCase() : char.toLowerCase()).join('');
 
-// Main handler function
 async function handleRequest(request) {
     // Constants
     const portsList = [443, 8443, 2053, 2096, 2087, 2083];
